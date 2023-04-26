@@ -15,7 +15,7 @@ const Navbar = () => {
                     rel="noopener noreferrer"
                     href="#"
                     aria-label="Back to homepage"
-                    className="flex items-center p-2 font-bold text-5xl font-title text-tertiary"
+                    className="flex items-center p-2 font-extrabold text-5xl font-heading text-tertiary"
                 >
                     dt
                 </a>
@@ -35,7 +35,16 @@ const Navbar = () => {
                             href="#"
                             className="flex items-center px-4 text-white opacity-het hover:opacity-100"
                         >
-                            Community
+                            Discover
+                        </a>
+                    </li>
+                    <li className="flex">
+                        <a
+                            rel="noopener noreferrer"
+                            href="#"
+                            className="flex items-center px-4 text-white opacity-het hover:opacity-100"
+                        >
+                            FAQ
                         </a>
                     </li>
                 </ul>
@@ -89,7 +98,16 @@ const Navbar = () => {
                             href="#"
                             className="flex items-center text-white opacity-het hover:opacity-100"
                         >
-                            Community
+                            Discover
+                        </a>
+                    </li>
+                    <li className="flex">
+                        <a
+                            rel="noopener noreferrer"
+                            href="#"
+                            className="flex items-center text-white opacity-het hover:opacity-100"
+                        >
+                            FAQ
                         </a>
                     </li>
                     <li className="flex">
