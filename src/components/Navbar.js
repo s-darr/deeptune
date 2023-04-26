@@ -1,0 +1,115 @@
+import { SignInButton, SignUpButton } from '@clerk/nextjs'
+import { useState } from 'react'
+
+const Navbar = () => {
+    const [isDropdownOpen, setIsDropdownOpen] = useState(false)
+
+    const toggleDropdown = () => {
+        setIsDropdownOpen((prevState) => !prevState)
+    }
+
+    return (
+        <header className="p-4 bg-white bg-opacity-e1">
+            <div className="container flex justify-between h-16 mx-auto">
+                <a
+                    rel="noopener noreferrer"
+                    href="#"
+                    aria-label="Back to homepage"
+                    className="flex items-center p-2 font-bold text-5xl font-title text-tertiary"
+                >
+                    dt
+                </a>
+                <ul className="hidden space-x-3 md:flex mb-1">
+                    <li className="flex">
+                        <a
+                            rel="noopener noreferrer"
+                            href="#"
+                            className="flex items-center px-4 text-white border-b-2 border-secondary opacity-het hover:opacity-100"
+                        >
+                            Create
+                        </a>
+                    </li>
+                    <li className="flex">
+                        <a
+                            rel="noopener noreferrer"
+                            href="#"
+                            className="flex items-center px-4 text-white opacity-het hover:opacity-100"
+                        >
+                            Community
+                        </a>
+                    </li>
+                </ul>
+                <div className="items-center flex-shrink-0 hidden md:flex">
+                    <SignInButton mode="modal">
+                        <button className="self-center px-8 py-3 text-white opacity-het hover:opacity-100">
+                            Sign in
+                        </button>
+                    </SignInButton>
+                    <SignUpButton mode="modal">
+                        <button className="self-center px-8 py-3 rounded bg-primary bg-opacity-het hover:bg-opacity-100 text-black text-opacity-het">
+                            Sign up
+                        </button>
+                    </SignUpButton>
+                </div>
+                <button
+                    className="p-4 md:hidden"
+                    onClick={toggleDropdown}
+                    aria-label="Toggle navigation"
+                >
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                        className="w-6 h-6 text-white text-opacity-het"
+                    >
+                        <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth="2"
+                            d="M4 6h16M4 12h16M4 18h16"
+                        ></path>
+                    </svg>
+                </button>
+            </div>
+            {isDropdownOpen && (
+                <ul className="container flex-col space-y-4 p-2 my-2 md:hidden mx-auto">
+                    <li className="flex">
+                        <a
+                            rel="noopener noreferrer"
+                            href="#"
+                            className="flex items-center text-white opacity-het hover:opacity-100"
+                        >
+                            Create
+                        </a>
+                    </li>
+                    <li className="flex">
+                        <a
+                            rel="noopener noreferrer"
+                            href="#"
+                            className="flex items-center text-white opacity-het hover:opacity-100"
+                        >
+                            Community
+                        </a>
+                    </li>
+                    <li className="flex">
+                        <SignInButton mode="modal">
+                            <button className="flex items-center text-white opacity-het hover:opacity-100">
+                                Sign in
+                            </button>
+                        </SignInButton>
+                    </li>
+                    <li className="flex">
+                        <SignUpButton mode="modal">
+                            <button className="flex items-center text-white opacity-het hover:opacity-100">
+                                Sign up
+                            </button>
+                        </SignUpButton>
+                    </li>
+                </ul>
+            )}
+        </header>
+    )
+}
+
+export default Navbar

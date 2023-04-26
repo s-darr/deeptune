@@ -1,18 +1,13 @@
-import Image from 'next/image'
-import { Inter } from 'next/font/google'
-import { SignInButton } from '@clerk/nextjs'
-
-const inter = Inter({ subsets: ['latin'] })
+import Navbar from '../components/Navbar'
 
 export default function Home() {
     return (
-        <main
-            className={`flex min-h-screen flex-col items-center justify-between p-24 ${inter.className}`}
-        >
-            <div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm lg:flex">
-                <SignInButton mode="modal">
-                    <button className="btn">Sign in</button>
-                </SignInButton>
+        <main className="font-body h-screen w-screen bg-base">
+            <Navbar />
+            <div className="mt-20 flex flex-col justify-center items-center">
+                <h1 className="flex font-bold md:text-9xl text-7xl font-title text-transparent bg-clip-text bg-gradient-to-r from-primary via-secondary to-tertiary background-animate">
+                    deeptune.ai
+                </h1>
             </div>
         </main>
     )
