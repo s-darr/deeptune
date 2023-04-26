@@ -1,9 +1,10 @@
 import { SignInButton, SignUpButton } from '@clerk/nextjs'
+import { useClerk } from '@clerk/clerk-react'
 import { useState } from 'react'
 
-const Navbar = () => {
+const Navbar = (isSignedIn) => {
     const [isDropdownOpen, setIsDropdownOpen] = useState(false)
-
+    const { signOut } = useClerk()
     const toggleDropdown = () => {
         setIsDropdownOpen((prevState) => !prevState)
     }
@@ -49,16 +50,32 @@ const Navbar = () => {
                     </li>
                 </ul>
                 <div className="items-center flex-shrink-0 hidden md:flex">
-                    <SignInButton mode="modal">
-                        <button className="self-center px-8 py-3 text-white opacity-het hover:opacity-100">
-                            Sign in
-                        </button>
-                    </SignInButton>
-                    <SignUpButton mode="modal">
-                        <button className="self-center px-8 py-3 rounded bg-primary bg-opacity-het hover:bg-opacity-100 text-black text-opacity-het">
-                            Sign up
-                        </button>
-                    </SignUpButton>
+                    {isSignedIn.isSignedIn ? (
+                        <>
+                            <button
+                                className="self-center px-8 py-3 text-white opacity-het hover:opacity-100"
+                                onClick={() => signOut()}
+                            >
+                                Sign out
+                            </button>
+                            <h1 className="text-white opacity-het hover-opacity-100">
+                                Credits: 100
+                            </h1>
+                        </>
+                    ) : (
+                        <>
+                            <SignInButton mode="modal">
+                                <button className="self-center px-8 py-3 text-white opacity-het hover:opacity-100">
+                                    Sign in
+                                </button>
+                            </SignInButton>
+                            <SignUpButton mode="modal">
+                                <button className="self-center px-8 py-3 rounded bg-primary bg-opacity-het hover:bg-opacity-100 text-black text-opacity-het">
+                                    Sign up
+                                </button>
+                            </SignUpButton>
+                        </>
+                    )}
                 </div>
                 <button
                     className="p-4 md:hidden"
