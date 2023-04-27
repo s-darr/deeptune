@@ -1,9 +1,16 @@
 import Navbar from '../components/Navbar'
+import { useUser } from '@clerk/clerk-react'
 
 export default function Home() {
+    const { isLoaded: userLoaded, isSignedIn } = useUser()
+    const user = useUser()
+    if (!userLoaded) {
+        // handle loading state here
+        return null
+    }
     return (
         <main className="font-body font-semibold h-screen w-screen bg-base">
-            <Navbar />
+            <Navbar isSignedIn={isSignedIn} />
             <div className="mt-20 flex flex-col justify-center items-center">
                 <h1 className="flex font-extrabold md:text-8xl sm:text-6xl text-4xl font-heading text-transparent bg-clip-text bg-gradient-to-r from-primary via-secondary to-tertiary background-animate animate-pulse">
                     deeptune.ai
