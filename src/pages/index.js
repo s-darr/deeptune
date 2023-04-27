@@ -18,16 +18,16 @@ export default function Home() {
                 <h2 className="font-extrabold p-4 mb-16 md:text-3xl sm:text-2xl text-xl text-white text-opacity-met text-center">
                     The Home of AI Music &#129302; &#127926;
                 </h2>
-                <div className="bg-base w-screen py-8 px-16">
+                <div className="bg-base w-screen py-16 px-20">
                     <h2 className="font-extrabold md:text-2xl sm:text-xl text-lg text-white text-opacity-het text-center">
                         Create and Discover AI Covers From Your Favorite
-                        Celebrities
+                        Celebrities &#128171;
                     </h2>
                     <div className="flex flex-row justify-center items-center mt-8 space-x-8">
-                        <button className="self-center w-56 py-5 px-2 rounded bg-secondary bg-opacity-het hover:bg-opacity-100 text-black md:text-xl sm:text-lg text-xs text-opacity-het">
+                        <button className="self-center w-56 py-5 px-2 rounded-lg bg-secondary bg-opacity-het hover:bg-opacity-100 text-black md:text-xl sm:text-lg text-sm text-opacity-het">
                             Create &#127908;
                         </button>
-                        <button className="self-center w-56 py-5 px-2 rounded bg-tertiary bg-opacity-het hover:bg-opacity-100 text-black md:text-xl sm:text-lg text-xs text-opacity-het">
+                        <button className="self-center w-56 py-5 px-2 rounded-lg bg-tertiary bg-opacity-het hover:bg-opacity-100 text-black md:text-xl sm:text-lg text-sm text-opacity-het">
                             Discover &#127911;
                         </button>
                     </div>
