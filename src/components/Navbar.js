@@ -1,58 +1,78 @@
 import { SignInButton, SignUpButton } from '@clerk/nextjs'
-import { useClerk } from '@clerk/clerk-react'
+import { useClerk, useUser } from '@clerk/clerk-react'
+import { useEffect } from 'react'
 import { useState } from 'react'
+import Link from 'next/link'
+import { useRouter } from 'next/router'
 
-const Navbar = (isSignedIn) => {
+const Navbar = () => {
     const [isDropdownOpen, setIsDropdownOpen] = useState(false)
+    const [credits, setCredits] = useState()
+    const router = useRouter()
+
     const toggleDropdown = () => {
         setIsDropdownOpen((prevState) => !prevState)
     }
-
+    const { isSignedIn } = useUser()
     const { signOut } = useClerk()
+    useEffect(() => {
+        const fetchCredits = async () => {
+            if (isSignedIn) {
+                const res = await fetch('/api/credits')
+                const data = await res.json()
+                setCredits(data.credits)
+            }
+        }
+        fetchCredits()
+    }, [isSignedIn])
 
     return (
         <header className="p-4 bg-base">
             <div className="container flex justify-between h-16 mx-auto">
-                <a
-                    rel="noopener noreferrer"
-                    href="#"
-                    aria-label="Back to homepage"
+                <Link
+                    href="/"
                     className="flex items-center p-2 font-extrabold text-5xl font-heading text-tertiary"
                 >
                     dt
-                </a>
+                </Link>
+
                 <ul className="hidden space-x-4 md:flex">
                     <li className="flex">
-                        <a
-                            rel="noopener noreferrer"
-                            href="#"
-                            className="flex items-center px-4 text-white border-b-2 border-secondary opacity-het hover:opacity-100"
+                        <Link
+                            className={`flex items-center px-4 text-white opacity-het hover:opacity-100 ${
+                                router.asPath === '/create'
+                                    ? 'border-b-2 border-secondary'
+                                    : ''
+                            }`}
+                            href="/create"
                         >
                             Create
-                        </a>
+                        </Link>
                     </li>
                     <li className="flex">
-                        <a
-                            rel="noopener noreferrer"
-                            href="#"
-                            className="flex items-center px-4 text-white opacity-het hover:opacity-100"
+                        <Link
+                            className={`flex items-center px-4 text-white opacity-het hover:opacity-100 ${
+                                router.asPath === '/discover'
+                                    ? 'border-b-2 border-secondary'
+                                    : ''
+                            }`}
+                            href="/discover"
                         >
                             Discover
-                        </a>
+                        </Link>
                     </li>
                 </ul>
                 <div className="flex-shrink-0 items-center hidden md:flex">
-                    {isSignedIn.isSignedIn ? (
+                    {isSignedIn ? (
                         <>
                             <button className="self-center px-8 py-3 rounded-lg bg-primary bg-opacity-het hover:bg-opacity-100 text-black text-opacity-het">
-                                Add credits (2 left)
+                                Add credits ({credits} left)
                             </button>
-                            <button
-                                className="self-center px-8 py-3 rounded-lg text-white opacity-het hover:opacity-100"
-                                onClick={() => signOut()}
-                            >
-                                Sign out
-                            </button>
+                            <Link onClick={() => signOut()} href="/">
+                                <button className="self-center px-8 py-3 rounded-lg text-white opacity-het hover:opacity-100">
+                                    Sign out
+                                </button>
+                            </Link>
                         </>
                     ) : (
                         <>
@@ -110,22 +130,22 @@ const Navbar = (isSignedIn) => {
             {isDropdownOpen && (
                 <ul className="container flex-col space-y-4 p-2 my-2 md:hidden mx-auto">
                     <li className="flex">
-                        <a
-                            rel="noopener noreferrer"
-                            href="#"
+                        <Link
                             className="flex items-center text-white opacity-het hover:opacity-100"
+                            href="/create"
+                            onClick={toggleDropdown}
                         >
                             Create
-                        </a>
+                        </Link>
                     </li>
                     <li className="flex">
-                        <a
-                            rel="noopener noreferrer"
-                            href="#"
+                        <Link
                             className="flex items-center text-white opacity-het hover:opacity-100"
+                            href="/discover"
+                            onClick={toggleDropdown}
                         >
                             Discover
-                        </a>
+                        </Link>
                     </li>
                     {isSignedIn.isSignedIn ? (
                         <>
