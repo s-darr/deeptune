@@ -147,17 +147,20 @@ const Navbar = () => {
                             Discover
                         </Link>
                     </li>
-                    {isSignedIn.isSignedIn ? (
+                    {isSignedIn ? (
                         <>
                             <li className="flex">
                                 <button className="flex items-center text-white opacity-het hover:opacity-100">
-                                    Add credits (2 left)
+                                    Add credits ({credits} left)
                                 </button>
                             </li>
                             <li className="flex">
                                 <button
                                     className="flex items-center text-white opacity-het hover:opacity-100"
-                                    onClick={() => signOut()}
+                                    onClick={() => {
+                                        signOut()
+                                        toggleDropdown()
+                                    }}
                                 >
                                     Sign out
                                 </button>
