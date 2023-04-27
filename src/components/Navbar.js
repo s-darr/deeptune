@@ -4,13 +4,14 @@ import { useState } from 'react'
 
 const Navbar = (isSignedIn) => {
     const [isDropdownOpen, setIsDropdownOpen] = useState(false)
-    const { signOut } = useClerk()
     const toggleDropdown = () => {
         setIsDropdownOpen((prevState) => !prevState)
     }
 
+    const { signOut } = useClerk()
+
     return (
-        <header className="p-4 bg-white bg-opacity-e1">
+        <header className="p-4 bg-base">
             <div className="container flex justify-between h-16 mx-auto">
                 <a
                     rel="noopener noreferrer"
