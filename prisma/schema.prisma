@@ -13,7 +13,7 @@ datasource db {
 
 model User {
   id        String   @id @default(cuid())
-  credits   Int      @default(0) //change default here
+  credits   Int      @default(50) 
   songs     Song[]
   @@index([id])
 }
