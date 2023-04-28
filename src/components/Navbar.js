@@ -1,7 +1,6 @@
 import { SignInButton, SignUpButton } from '@clerk/nextjs'
 import { useClerk, useUser } from '@clerk/clerk-react'
-import { useEffect } from 'react'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 
@@ -9,12 +8,15 @@ const Navbar = () => {
     const [isDropdownOpen, setIsDropdownOpen] = useState(false)
     const [credits, setCredits] = useState()
     const router = useRouter()
+    const { isSignedIn } = useUser()
+    const { signOut } = useClerk()
 
+    // toggle dropdown menu
     const toggleDropdown = () => {
         setIsDropdownOpen((prevState) => !prevState)
     }
-    const { isSignedIn } = useUser()
-    const { signOut } = useClerk()
+
+    // fetch credits of current user
     useEffect(() => {
         const fetchCredits = async () => {
             if (isSignedIn) {
@@ -28,6 +30,7 @@ const Navbar = () => {
 
     return (
         <header className="p-4 bg-base">
+            {/* logo on wide screen*/}
             <div className="container flex justify-between h-16 mx-auto">
                 <Link
                     href="/"
@@ -35,7 +38,7 @@ const Navbar = () => {
                 >
                     dt
                 </Link>
-
+                {/* navbar links on wide screen*/}
                 <ul className="hidden space-x-4 md:flex">
                     <li className="flex">
                         <Link
@@ -62,10 +65,12 @@ const Navbar = () => {
                         </Link>
                     </li>
                 </ul>
+                {/* buttons on wide screens */}
                 <div className="flex-shrink-0 items-center hidden md:flex">
                     {isSignedIn ? (
                         <>
-                            <button className="self-center px-8 py-3 rounded-lg bg-primary bg-opacity-het hover:bg-opacity-100 text-black text-opacity-het">
+                            {/* buttons rendered when signed in */}
+                            <button className="self-center w-56 py-3 rounded-lg bg-primary bg-opacity-het hover:bg-opacity-100 text-black text-opacity-het">
                                 Add credits ({credits} left)
                             </button>
                             <Link onClick={() => signOut()} href="/">
@@ -76,6 +81,7 @@ const Navbar = () => {
                         </>
                     ) : (
                         <>
+                            {/* buttons rendered when signed out */}
                             <SignInButton mode="modal">
                                 <button className="self-center px-8 py-3 rounded-lg text-white opacity-het hover:opacity-100">
                                     Sign in
@@ -89,6 +95,7 @@ const Navbar = () => {
                         </>
                     )}
                 </div>
+                {/* dropdown menu on narrow screens*/}
                 <button
                     className="p-4 md:hidden"
                     onClick={toggleDropdown}
@@ -127,6 +134,7 @@ const Navbar = () => {
                     )}
                 </button>
             </div>
+            {/* dropdown menu items*/}
             {isDropdownOpen && (
                 <ul className="container flex-col space-y-4 p-2 my-2 md:hidden mx-auto">
                     <li className="flex">
@@ -149,6 +157,7 @@ const Navbar = () => {
                     </li>
                     {isSignedIn ? (
                         <>
+                            {/* items rendered when signed in*/}
                             <li className="flex">
                                 <button className="flex items-center text-white opacity-het hover:opacity-100">
                                     Add credits ({credits} left)
@@ -168,6 +177,7 @@ const Navbar = () => {
                         </>
                     ) : (
                         <>
+                            {/* items rendered when signed out*/}
                             <li className="flex">
                                 <SignInButton mode="modal">
                                     <button className="flex items-center text-white opacity-het hover:opacity-100">

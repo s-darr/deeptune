@@ -1,8 +1,10 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import { PrismaClient } from '@prisma/client'
 import { getAuth } from '@clerk/nextjs/server'
+
 const prisma = new PrismaClient()
 
+// get credits of current user
 export default async function handler(req, res) {
     const { userId } = getAuth(req)
     let user
