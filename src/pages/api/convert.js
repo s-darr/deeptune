@@ -18,5 +18,6 @@ export default async function handler(req, res) {
     // call api (add api key to .env)
 
     // check amount of credits
+
     return res.status(200).json({ credits: user.credits })
 }
