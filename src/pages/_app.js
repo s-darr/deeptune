@@ -18,6 +18,7 @@ export default function App({ Component, pageProps }) {
             className={`${karla.variable} font-heading ${inconsolata.variable} font-body`}
         >
             <ClerkProvider
+                /* style auth modals */
                 appearance={{
                     baseTheme: dark,
                     elements: {
