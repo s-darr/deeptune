@@ -34,7 +34,7 @@ const Navbar = () => {
             <div className="container flex justify-between h-16 mx-auto">
                 <Link
                     href="/"
-                    className="flex items-center p-2 font-extrabold text-5xl font-heading text-tertiary"
+                    className="flex items-center p-2 font-extrabold text-5xl font-heading text-transparent bg-clip-text bg-gradient-to-r from-primary via-secondary to-tertiary"
                 >
                     dt
                 </Link>
@@ -70,27 +70,39 @@ const Navbar = () => {
                     {isSignedIn ? (
                         <>
                             {/* buttons rendered when signed in */}
-                            <button className="self-center w-56 py-3 rounded-lg bg-primary bg-opacity-het hover:bg-opacity-100 text-black text-opacity-het">
-                                Add credits ({credits} left)
-                            </button>
-                            <Link onClick={() => signOut()} href="/">
-                                <button className="self-center px-8 py-3 rounded-lg text-white opacity-het hover:opacity-100">
-                                    Sign out
+                            <div className="relative mr-6">
+                                <div className="absolute -inset-0.5 rounded-lg bg-gradient-to-r from-primary via-secondary to-tertiary animate-button"></div>
+                                <button className="relative rounded-lg hover:text-black hover:bg-opacity-0 bg-base w-60 py-3 text-white text-opacity-het">
+                                    Add credits ({credits} left)
                                 </button>
+                            </div>
+                            <Link onClick={() => signOut()} href="/">
+                                <div className="relative mr-6">
+                                    <div className="absolute -inset-0.5 rounded-lg bg-white opacity-het animate-button"></div>
+                                    <button className="relative rounded-lg text-black hover:text-white bg-opacity-0 hover:bg-opacity-100 bg-base px-9 py-3 text-opacity-het">
+                                        Sign out
+                                    </button>
+                                </div>
                             </Link>
                         </>
                     ) : (
                         <>
                             {/* buttons rendered when signed out */}
                             <SignInButton mode="modal">
-                                <button className="self-center px-8 py-3 rounded-lg text-white opacity-het hover:opacity-100">
-                                    Sign in
-                                </button>
+                                <div className="relative mr-6">
+                                    <div className="absolute -inset-0.5 rounded-lg bg-white opacity-het animate-button"></div>
+                                    <button className="relative rounded-lg text-black hover:text-white bg-opacity-0 hover:bg-opacity-100 bg-base px-9 py-3 text-opacity-het">
+                                        Sign in
+                                    </button>
+                                </div>
                             </SignInButton>
                             <SignUpButton mode="modal">
-                                <button className="self-center px-8 py-3 rounded-lg bg-primary bg-opacity-het hover:bg-opacity-100 text-black text-opacity-het">
-                                    Sign up
-                                </button>
+                                <div className="relative">
+                                    <div className="absolute -inset-0.5 rounded-lg bg-gradient-to-r from-primary via-secondary to-tertiary animate-button"></div>
+                                    <button className="relative rounded-lg hover:text-black hover:bg-opacity-0 bg-base px-9 py-3 text-white text-opacity-het">
+                                        Sign up
+                                    </button>
+                                </div>
                             </SignUpButton>
                         </>
                     )}
