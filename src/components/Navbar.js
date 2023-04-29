@@ -1,32 +1,24 @@
 import { SignInButton, SignUpButton } from '@clerk/nextjs'
-import { useClerk, useUser } from '@clerk/clerk-react'
-import { useEffect, useState } from 'react'
+import Modal from './CreditsModal'
+import { useQuery } from 'react-query'
+import { useClerk, useAuth } from '@clerk/clerk-react'
+import { useState } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
+import { fetchCredits } from '@component/utils/fetchCredits'
 
 const Navbar = () => {
     const [isDropdownOpen, setIsDropdownOpen] = useState(false)
-    const [credits, setCredits] = useState()
+    const [showModal, setShowModal] = useState(false)
     const router = useRouter()
-    const { isSignedIn } = useUser()
+    const { isSignedIn } = useAuth()
     const { signOut } = useClerk()
+    const credits = useQuery(
+        ['credits', { isSignedIn: isSignedIn }],
+        fetchCredits
+    )?.data?.credits
 
-    // toggle dropdown menu
-    const toggleDropdown = () => {
-        setIsDropdownOpen((prevState) => !prevState)
-    }
-
-    // fetch credits of current user
-    useEffect(() => {
-        const fetchCredits = async () => {
-            if (isSignedIn) {
-                const res = await fetch('/api/credits')
-                const data = await res.json()
-                setCredits(data.credits)
-            }
-        }
-        fetchCredits()
-    }, [isSignedIn])
+    const toggleDropdown = () => setIsDropdownOpen((prevState) => !prevState)
 
     return (
         <header className="p-4 bg-base">
@@ -72,9 +64,17 @@ const Navbar = () => {
                             {/* buttons rendered when signed in */}
                             <div className="relative mr-6">
                                 <div className="absolute -inset-0.5 rounded-lg bg-gradient-to-r from-primary via-secondary to-tertiary animate-button"></div>
-                                <button className="relative rounded-lg hover:text-black hover:bg-opacity-0 bg-base w-60 py-3 text-white text-opacity-het">
+                                <button
+                                    className="relative rounded-lg hover:text-black hover:bg-opacity-0 bg-base w-60 py-3 text-white text-opacity-het"
+                                    onClick={() => setShowModal(true)}
+                                >
                                     Add credits ({credits} left)
                                 </button>
+                                <Modal
+                                    onClose={() => setShowModal(false)}
+                                    show={showModal}
+                                    credits={credits}
+                                ></Modal>
                             </div>
                             <Link onClick={() => signOut()} href="/">
                                 <div className="relative mr-6">
@@ -171,9 +171,17 @@ const Navbar = () => {
                         <>
                             {/* items rendered when signed in*/}
                             <li className="flex">
-                                <button className="flex items-center text-white opacity-het hover:opacity-100">
+                                <button
+                                    className="flex items-center text-white opacity-het hover:opacity-100"
+                                    onClick={() => setShowModal(true)}
+                                >
                                     Add credits ({credits} left)
                                 </button>
+                                <Modal
+                                    onClose={() => setShowModal(false)}
+                                    show={showModal}
+                                    credits={credits}
+                                ></Modal>
                             </li>
                             <li className="flex">
                                 <button

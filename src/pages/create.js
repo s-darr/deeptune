@@ -1,5 +1,4 @@
 import Navbar from '../components/Navbar'
-
 export default function Create() {
     return (
         <main className="font-body font-semibold h-screen w-screen bg-base bg-hero-pattern">
