@@ -4,7 +4,9 @@ const CheckoutForm = () => {
     const { userId } = useAuth()
     const handleSubmit = async (e) => {
         e.preventDefault()
-        const stripe = await loadStripe(process.env.STRIPE_PUBLISHABLE_KEY)
+        const stripe = await loadStripe(
+            process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY
+        )
         const { error } = await stripe.redirectToCheckout({
             // webhook can access session created
             lineItems: [

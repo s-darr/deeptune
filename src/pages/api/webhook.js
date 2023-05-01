@@ -1,4 +1,5 @@
 // see https://github.com/vercel/next.js/blob/canary/examples/with-stripe-typescript/pages/api/webhooks/index.ts
+// must create local webhook event to test : https://stripe.com/docs/webhooks/test?locale=en-GB
 import Stripe from 'stripe'
 import { PrismaClient } from '@prisma/client'
 const handler = async (req, res) => {
