@@ -3,7 +3,7 @@ import Link from 'next/link'
 
 export default function Home() {
     return (
-        <main className="font-body font-semibold h-screen w-screen bg-base bg-hero-pattern">
+        <main className="font-body font-semibold min-h-screen w-full bg-base bg-hero-pattern bg-cover">
             <Navbar />
             <div className="mt-20 flex flex-col justify-center items-center">
                 {/* hero section */}
@@ -19,7 +19,7 @@ export default function Home() {
                         Create and Discover AI Song Covers From Your Favorite
                         Celebrities
                     </h2>
-                    <div className="flex flex-row justify-center items-center mt-8 space-x-8">
+                    <div className="flex flex-col sm:flex-row justify-center items-center mt-8 sm:space-x-8 space-y-8 sm:space-y-0">
                         <Link href="/create">
                             <div className="relative">
                                 <div className="absolute -inset-0.5 rounded-lg bg-gradient-to-r from-primary via-secondary to-tertiary animate-button"></div>

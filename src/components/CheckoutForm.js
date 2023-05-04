@@ -20,7 +20,7 @@ const CheckoutForm = () => {
     }
     return (
         <form onSubmit={handleSubmit}>
-            <button className="" type="submit">
+            <button type="submit">
                 BUY 100 CREDITS 2 DOLLARS (CAN CHANGE THIS)
             </button>
         </form>

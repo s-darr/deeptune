@@ -67,6 +67,7 @@ const Navbar = () => {
                                 <button
                                     className="relative rounded-lg hover:text-black hover:bg-opacity-0 bg-base w-60 py-3 text-white text-opacity-het"
                                     onClick={() => setShowModal(true)}
+                                    id="credits"
                                 >
                                     Add credits ({credits} left)
                                 </button>
@@ -99,7 +100,10 @@ const Navbar = () => {
                             <SignUpButton mode="modal">
                                 <div className="relative">
                                     <div className="absolute -inset-0.5 rounded-lg bg-gradient-to-r from-primary via-secondary to-tertiary animate-button"></div>
-                                    <button className="relative rounded-lg hover:text-black hover:bg-opacity-0 bg-base px-9 py-3 text-white text-opacity-het">
+                                    <button
+                                        className="relative rounded-lg hover:text-black hover:bg-opacity-0 bg-base px-9 py-3 text-white text-opacity-het"
+                                        id="sign-up"
+                                    >
                                         Sign up
                                     </button>
                                 </div>
