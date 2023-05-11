@@ -2,6 +2,7 @@
 // must create local webhook event to test : https://stripe.com/docs/webhooks/test?locale=en-GB
 import Stripe from 'stripe'
 import { PrismaClient } from '@prisma/client'
+
 const handler = async (req, res) => {
     const stripe = new Stripe(process.env.STRIPE_SECRET_KEY)
 
@@ -25,7 +26,7 @@ const handler = async (req, res) => {
             const sessionId = event.data.object['id']
             const session = await stripe.checkout.sessions.retrieve(sessionId)
             const userId = session['client_reference_id']
-            fulfillOrder(userId, 100)
+            fulfilOrder(userId, 100)
         } else {
             console.warn(`Unhandled event type: ${event.type}`)
         }
@@ -42,7 +43,7 @@ export const config = {
     },
 }
 
-const fulfillOrder = async (userId, amount) => {
+const fulfilOrder = async (userId, amount) => {
     const prisma = new PrismaClient()
     const updateUser = await prisma.user.update({
         where: {

@@ -8,7 +8,7 @@ module.exports = {
     theme: {
         extend: {
             fontFamily: {
-                body: ['var(--inconsolata)'],
+                body: ['var(--montserrat)'],
                 heading: ['var(--karla)'],
             },
             colors: {

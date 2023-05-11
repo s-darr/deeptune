@@ -2,17 +2,17 @@ const Upload = ({ onFileUpload }) => {
     const handleFileUpload = (event) => {
         const uploadedFile = event.target.files[0]
         if (uploadedFile) {
-            onFileUpload(uploadedFile) // Pass the uploaded file to the parent component
+            onFileUpload(uploadedFile) // pass the uploaded file to the parent component
         }
     }
 
     return (
-        <fieldset className="text-gray-100">
+        <fieldset>
             <input
                 type="file"
                 name="files"
                 id="files"
-                className="md:px-60 py-12 sm:px-1 border-2 border-dashed rounded-lg border-primary text-gray-400 bg-base"
+                className="px-8 sm:px-20 md:px-28 py-12 border-2 border-dashed rounded-xl border-white border-opacity-met hover:border-opacity-het text-white text-opacity-dt bg-transparent text-sm font-semibold hover:cursor-pointer"
                 required
                 accept="audio/wav"
                 onChange={handleFileUpload}

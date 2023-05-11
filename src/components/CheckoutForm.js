@@ -1,5 +1,6 @@
 import { loadStripe } from '@stripe/stripe-js'
 import { useAuth } from '@clerk/clerk-react'
+
 const CheckoutForm = () => {
     const { userId } = useAuth()
     const handleSubmit = async (e) => {
@@ -8,13 +9,13 @@ const CheckoutForm = () => {
             process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY
         )
         const { error } = await stripe.redirectToCheckout({
-            // webhook can access session created
+            // webhook can access created session
             lineItems: [
                 { price: 'price_1N1vJ0JwwbRV6RGNNeOiqxiQ', quantity: 1 },
             ],
             successUrl: `${window.location.origin}/create`, // redirect to create page
             mode: 'payment',
-            clientReferenceId: userId, // user id to be allow for webhook to access
+            clientReferenceId: userId, // user id to allow for webhook to access
         })
         console.warn(error.message)
     }

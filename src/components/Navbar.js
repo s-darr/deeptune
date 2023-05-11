@@ -1,7 +1,7 @@
 import { SignInButton, SignUpButton } from '@clerk/nextjs'
 import Modal from './CreditsModal'
 import { useQuery } from 'react-query'
-import { useClerk, useAuth } from '@clerk/clerk-react'
+import { useAuth, useClerk } from '@clerk/clerk-react'
 import { useState } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
@@ -21,7 +21,7 @@ const Navbar = () => {
     const toggleDropdown = () => setIsDropdownOpen((prevState) => !prevState)
 
     return (
-        <header className="p-4 bg-base">
+        <header className="py-4 px-8">
             {/* logo on wide screen*/}
             <div className="container flex justify-between h-16 mx-auto">
                 <Link
@@ -65,7 +65,7 @@ const Navbar = () => {
                             <div className="relative mr-6">
                                 <div className="absolute -inset-0.5 rounded-lg bg-gradient-to-r from-primary via-secondary to-tertiary animate-button"></div>
                                 <button
-                                    className="relative rounded-lg hover:text-black hover:bg-opacity-0 bg-base w-60 py-3 text-white text-opacity-het"
+                                    className="relative rounded-lg hover:text-black hover:bg-opacity-0 bg-gray-800 w-60 py-3 text-white text-opacity-het"
                                     onClick={() => setShowModal(true)}
                                     id="credits"
                                 >
@@ -80,7 +80,7 @@ const Navbar = () => {
                             <Link onClick={() => signOut()} href="/">
                                 <div className="relative mr-6">
                                     <div className="absolute -inset-0.5 rounded-lg bg-white opacity-het animate-button"></div>
-                                    <button className="relative rounded-lg text-black hover:text-white bg-opacity-0 hover:bg-opacity-100 bg-base px-9 py-3 text-opacity-het">
+                                    <button className="relative rounded-lg text-black hover:text-white bg-opacity-0 hover:bg-opacity-100 bg-gray-800 px-9 py-3 text-opacity-het">
                                         Sign out
                                     </button>
                                 </div>
@@ -92,7 +92,7 @@ const Navbar = () => {
                             <SignInButton mode="modal">
                                 <div className="relative mr-6">
                                     <div className="absolute -inset-0.5 rounded-lg bg-white opacity-het animate-button"></div>
-                                    <button className="relative rounded-lg text-black hover:text-white bg-opacity-0 hover:bg-opacity-100 bg-base px-9 py-3 text-opacity-het">
+                                    <button className="relative rounded-lg text-black hover:text-white bg-opacity-0 hover:bg-opacity-100 bg-gray-800 px-9 py-3 text-opacity-het">
                                         Sign in
                                     </button>
                                 </div>
@@ -101,7 +101,7 @@ const Navbar = () => {
                                 <div className="relative">
                                     <div className="absolute -inset-0.5 rounded-lg bg-gradient-to-r from-primary via-secondary to-tertiary animate-button"></div>
                                     <button
-                                        className="relative rounded-lg hover:text-black hover:bg-opacity-0 bg-base px-9 py-3 text-white text-opacity-het"
+                                        className="relative rounded-lg hover:text-black hover:bg-opacity-0 bg-gray-800 px-9 py-3 text-white text-opacity-het"
                                         id="sign-up"
                                     >
                                         Sign up

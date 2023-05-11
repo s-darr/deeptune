@@ -3,9 +3,9 @@ import ArtistDropdown from '../components/ArtistDropdown'
 import FileUpload from '../components/FileUpload'
 import { useAuth } from '@clerk/clerk-react'
 import { useQuery } from 'react-query'
-import fetchCredits from '@component/utils/fetchCredits'
+import { fetchCredits } from '@component/utils/fetchCredits'
 import { convertAudio } from '@component/utils/convertAudio'
-import { useState, useRef } from 'react'
+import { useRef, useState } from 'react'
 import VoiceToggle from '../components/VoiceToggle'
 import Loading from '../components/Loading'
 import { PrismaClient } from '@prisma/client'
@@ -49,15 +49,12 @@ export default function Create({ models }) {
     }
 
     return (
-        <main className="font-body font-semibold h-screen w-screen bg-base bg-hero-pattern">
+        <main className="font-body font-semibold h-screen w-screen bg-gradient-to-b from-gray-800 via-gray-950 to-gray-950">
             <Navbar />
             <form
-                className="mt-6 flex flex-col justify-center items-center gap-14"
+                className="mt-20 flex flex-col justify-center items-center gap-14"
                 onSubmit={handleSubmit}
             >
-                <h1 className="flex font-extrabold md:text-7xl sm:text-6xl text-5xl font-heading text-transparent bg-clip-text bg-gradient-to-r from-primary via-secondary to-tertiary animate-title">
-                    Create
-                </h1>
                 <ArtistDropdown
                     models={models}
                     onArtistSelect={setSelectedArtist}
@@ -71,8 +68,8 @@ export default function Create({ models }) {
                     </div>
                 )}
                 <div className="relative">
-                    <div className="absolute -inset-0.5 rounded-lg bg-gradient-to-r from-primary via-secondary to-tertiary animate-button"></div>
-                    <button className="relative rounded-lg hover:text-black hover:bg-opacity-0 bg-base w-full md:w-[48rem] py-3 px-4 md:px-6 text-white text-xl">
+                    <div className="absolute -inset-0.5 rounded-xl bg-gradient-to-r from-primary via-secondary to-tertiary animate-button"></div>
+                    <button className="relative rounded-xl hover:text-black hover:bg-opacity-0 bg-gray-950 md:w-96 sm:w-80 w-72 py-6 px-4 text-white text-opacity-het text-xl">
                         {loading ? <Loading /> : 'Create'}
                     </button>
                 </div>

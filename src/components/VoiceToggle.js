@@ -5,7 +5,7 @@ const Toggle = ({ onToggleSelect }) => {
 
     const handleOptionChange = (option) => {
         setSelectedOption(option)
-        onToggleSelect(option) // Pass the selected option to the parent component
+        onToggleSelect(option) // pass the selected option to the parent component
     }
 
     return (
@@ -20,10 +20,10 @@ const Toggle = ({ onToggleSelect }) => {
                     onChange={() => handleOptionChange('Singing')}
                 />
                 <span
-                    className={`px-10 py-2 rounded-l-md bg-base border border-secondary ${
+                    className={`bg-opacity-het border-opacity-het w-32 text-center py-3 rounded-l-md border border-white text-sm text-opacity-het hover:text-opacity-100 hover:cursor-pointer ${
                         selectedOption === 'Singing'
-                            ? 'bg-secondary opacity-60 text-white'
-                            : 'bg-base'
+                            ? 'bg-white text-black'
+                            : 'bg-transparent text-white'
                     }`}
                 >
                     Singing
@@ -39,10 +39,10 @@ const Toggle = ({ onToggleSelect }) => {
                     onChange={() => handleOptionChange('Rapping')}
                 />
                 <span
-                    className={`px-10 py-2 rounded-r-md bg-base border border-secondary ${
+                    className={`bg-opacity-het border-opacity-het w-32 text-center py-3 rounded-r-md border border-white text-sm text-opacity-het hover:text-opacity-100 hover:cursor-pointer ${
                         selectedOption === 'Rapping'
-                            ? 'bg-secondary opacity-60 text-white'
-                            : 'bg-base'
+                            ? 'bg-white text-black'
+                            : 'bg-transparent text-white'
                     }`}
                 >
                     Rapping
